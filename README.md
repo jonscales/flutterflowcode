@@ -1,6 +1,6 @@
-### HHH The Ride App
+# HHH The Ride App
 ## Cooper Wolf, Tim Haxton, Jon Scales
-### SWE Project  Spring 2025
+## SWE Project  Spring 2025
 ### FLutterFlow Code 
 This repository contains code copied from the flutterflow HHH-The Ride App  
 Project ID  h-h-h-the-ride-app-8hkscw
