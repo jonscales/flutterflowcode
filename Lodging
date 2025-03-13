@@ -8,28 +8,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'tradeshow_model.dart';
-export 'tradeshow_model.dart';
+import 'lodging_model.dart';
+export 'lodging_model.dart';
 
-class TradeshowWidget extends StatefulWidget {
-  const TradeshowWidget({super.key});
+class LodgingWidget extends StatefulWidget {
+  const LodgingWidget({super.key});
 
-  static String routeName = 'Tradeshow';
-  static String routePath = '/tradeshow';
+  static String routeName = 'Lodging';
+  static String routePath = '/lodging';
 
   @override
-  State<TradeshowWidget> createState() => _TradeshowWidgetState();
+  State<LodgingWidget> createState() => _LodgingWidgetState();
 }
 
-class _TradeshowWidgetState extends State<TradeshowWidget> {
-  late TradeshowModel _model;
+class _LodgingWidgetState extends State<LodgingWidget> {
+  late LodgingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TradeshowModel());
+    _model = createModel(context, () => LodgingModel());
   }
 
   @override
@@ -69,7 +69,7 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
               },
             ),
             title: Text(
-              'Tradeshow',
+              'Lodging',
               style: FlutterFlowTheme.of(context).headlineLarge.override(
                     fontFamily: 'Inter Tight',
                     color: Color(0xFEF4F7F9),
@@ -108,15 +108,6 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
                         alignment: Alignment(0, 1),
                       ),
                     ),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [],
                   ),
                 ),
               ],

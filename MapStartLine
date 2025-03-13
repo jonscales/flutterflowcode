@@ -1,3 +1,4 @@
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,30 +7,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import 'tradeshow_model.dart';
-export 'tradeshow_model.dart';
+import 'map_start_line_model.dart';
+export 'map_start_line_model.dart';
 
-class TradeshowWidget extends StatefulWidget {
-  const TradeshowWidget({super.key});
+class MapStartLineWidget extends StatefulWidget {
+  const MapStartLineWidget({
+    super.key,
+    required this.mapImagePath,
+  });
 
-  static String routeName = 'Tradeshow';
-  static String routePath = '/tradeshow';
+  final String? mapImagePath;
+
+  static String routeName = 'MapStartLine';
+  static String routePath = '/mapStartLine';
 
   @override
-  State<TradeshowWidget> createState() => _TradeshowWidgetState();
+  State<MapStartLineWidget> createState() => _MapStartLineWidgetState();
 }
 
-class _TradeshowWidgetState extends State<TradeshowWidget> {
-  late TradeshowModel _model;
+class _MapStartLineWidgetState extends State<MapStartLineWidget> {
+  late MapStartLineModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TradeshowModel());
+    _model = createModel(context, () => MapStartLineModel());
   }
 
   @override
@@ -69,7 +76,7 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
               },
             ),
             title: Text(
-              'Tradeshow',
+              'Map Viewer',
               style: FlutterFlowTheme.of(context).headlineLarge.override(
                     fontFamily: 'Inter Tight',
                     color: Color(0xFEF4F7F9),
@@ -92,34 +99,44 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
           ),
           body: SafeArea(
             top: true,
-            child: Stack(
-              children: [
-                Opacity(
-                  opacity: 0.3,
-                  child: Align(
-                    alignment: AlignmentDirectional(0, 1),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/landing_logo1.png',
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.contain,
-                        alignment: Alignment(0, 1),
+            child: Align(
+              alignment: AlignmentDirectional(0, 0),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: FlutterFlowExpandedImageView(
+                        image: Image.asset(
+                          'assets/images/startline.png',
+                          fit: BoxFit.contain,
+                        ),
+                        allowRotation: false,
+                        tag: 'imageTag2',
+                        useHeroAnimation: true,
                       ),
+                    ),
+                  );
+                },
+                child: Hero(
+                  tag: 'imageTag2',
+                  transitionOnUserGestures: true,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      'assets/images/startline.png',
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [],
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),

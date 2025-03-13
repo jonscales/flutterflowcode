@@ -8,28 +8,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'tradeshow_model.dart';
-export 'tradeshow_model.dart';
+import 'local_dining_model.dart';
+export 'local_dining_model.dart';
 
-class TradeshowWidget extends StatefulWidget {
-  const TradeshowWidget({super.key});
+class LocalDiningWidget extends StatefulWidget {
+  const LocalDiningWidget({super.key});
 
-  static String routeName = 'Tradeshow';
-  static String routePath = '/tradeshow';
+  static String routeName = 'LocalDining';
+  static String routePath = '/localDining';
 
   @override
-  State<TradeshowWidget> createState() => _TradeshowWidgetState();
+  State<LocalDiningWidget> createState() => _LocalDiningWidgetState();
 }
 
-class _TradeshowWidgetState extends State<TradeshowWidget> {
-  late TradeshowModel _model;
+class _LocalDiningWidgetState extends State<LocalDiningWidget> {
+  late LocalDiningModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TradeshowModel());
+    _model = createModel(context, () => LocalDiningModel());
   }
 
   @override
@@ -69,7 +69,7 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
               },
             ),
             title: Text(
-              'Tradeshow',
+              'Local Dining',
               style: FlutterFlowTheme.of(context).headlineLarge.override(
                     fontFamily: 'Inter Tight',
                     color: Color(0xFEF4F7F9),
@@ -108,15 +108,6 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
                         alignment: Alignment(0, 1),
                       ),
                     ),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [],
                   ),
                 ),
               ],

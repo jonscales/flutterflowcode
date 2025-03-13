@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -8,28 +9,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'tradeshow_model.dart';
-export 'tradeshow_model.dart';
+import 'waiver_minor_model.dart';
+export 'waiver_minor_model.dart';
 
-class TradeshowWidget extends StatefulWidget {
-  const TradeshowWidget({super.key});
+class WaiverMinorWidget extends StatefulWidget {
+  const WaiverMinorWidget({super.key});
 
-  static String routeName = 'Tradeshow';
-  static String routePath = '/tradeshow';
+  static String routeName = 'WaiverMinor';
+  static String routePath = '/waiverMinor';
 
   @override
-  State<TradeshowWidget> createState() => _TradeshowWidgetState();
+  State<WaiverMinorWidget> createState() => _WaiverMinorWidgetState();
 }
 
-class _TradeshowWidgetState extends State<TradeshowWidget> {
-  late TradeshowModel _model;
+class _WaiverMinorWidgetState extends State<WaiverMinorWidget> {
+  late WaiverMinorModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TradeshowModel());
+    _model = createModel(context, () => WaiverMinorModel());
   }
 
   @override
@@ -69,7 +70,7 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
               },
             ),
             title: Text(
-              'Tradeshow',
+              'Waiver minor',
               style: FlutterFlowTheme.of(context).headlineLarge.override(
                     fontFamily: 'Inter Tight',
                     color: Color(0xFEF4F7F9),
@@ -92,34 +93,14 @@ class _TradeshowWidgetState extends State<TradeshowWidget> {
           ),
           body: SafeArea(
             top: true,
-            child: Stack(
-              children: [
-                Opacity(
-                  opacity: 0.3,
-                  child: Align(
-                    alignment: AlignmentDirectional(0, 1),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        'assets/images/landing_logo1.png',
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.contain,
-                        alignment: Alignment(0, 1),
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0, 0),
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [],
-                  ),
-                ),
-              ],
+            child: Align(
+              alignment: AlignmentDirectional(0, -1),
+              child: FlutterFlowPdfViewer(
+                assetPath: 'assets/pdfs/waiver_txt.pdf',
+                width: double.infinity,
+                height: 622.72,
+                horizontalScroll: true,
+              ),
             ),
           ),
         ),

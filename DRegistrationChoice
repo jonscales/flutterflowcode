@@ -3,34 +3,36 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'registration_page_model.dart';
-export 'registration_page_model.dart';
+import 'd_registration_choice_model.dart';
+export 'd_registration_choice_model.dart';
 
-class RegistrationPageWidget extends StatefulWidget {
-  const RegistrationPageWidget({super.key});
+class DRegistrationChoiceWidget extends StatefulWidget {
+  const DRegistrationChoiceWidget({super.key});
 
-  static String routeName = 'RegistrationPage';
-  static String routePath = '/registrationPage';
+  static String routeName = 'DRegistrationChoice';
+  static String routePath = '/dRegistrationChoice';
 
   @override
-  State<RegistrationPageWidget> createState() => _RegistrationPageWidgetState();
+  State<DRegistrationChoiceWidget> createState() =>
+      _DRegistrationChoiceWidgetState();
 }
 
-class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
-  late RegistrationPageModel _model;
+class _DRegistrationChoiceWidgetState extends State<DRegistrationChoiceWidget> {
+  late DRegistrationChoiceModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RegistrationPageModel());
+    _model = createModel(context, () => DRegistrationChoiceModel());
   }
 
   @override
@@ -133,8 +135,24 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           child: Padding(
                             padding: EdgeInsets.all(6),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(
+                                  RegEnduranceWidget.routeName,
+                                  queryParameters: {
+                                    'eventName': serializeParam(
+                                      'Endurance Rides (25-100miles)',
+                                      ParamType.String,
+                                    ),
+                                    'ageFieldVisible': serializeParam(
+                                      false,
+                                      ParamType.bool,
+                                    ),
+                                    'riderAge': serializeParam(
+                                      '',
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
                               },
                               text: 'Endurance Rides (25-100mi)',
                               options: FFButtonOptions(
@@ -162,47 +180,117 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: AlignmentDirectional(0, -1),
-                          child: Padding(
-                            padding: EdgeInsets.all(6),
-                            child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: '10K ',
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 90,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 0, 16, 0),
-                                iconPadding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                color: Color(0xFFEFA339),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      fontFamily: 'Inter Tight',
-                                      fontSize: 25,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w900,
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(0, -1),
+                                child: Padding(
+                                  padding: EdgeInsets.all(6),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      context.pushNamed(
+                                        Reg10KAdultWidget.routeName,
+                                        queryParameters: {
+                                          'eventName': serializeParam(
+                                            '10K ADULT',
+                                            ParamType.String,
+                                          ),
+                                        }.withoutNulls,
+                                      );
+                                    },
+                                    text: '10K ADULT',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 90,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 16, 0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 0, 0),
+                                      color: Color(0xFFEFA339),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'Inter Tight',
+                                            fontSize: 25,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                      elevation: 0,
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFEFBC39),
+                                      ),
+                                      borderRadius: BorderRadius.circular(24),
                                     ),
-                                elevation: 0,
-                                borderSide: BorderSide(
-                                  color: Color(0xFFEFBC39),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(24),
                               ),
                             ),
-                          ),
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(0, -1),
+                                child: Padding(
+                                  padding: EdgeInsets.all(6),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      context.pushNamed(
+                                        Reg10KChildWidget.routeName,
+                                        queryParameters: {
+                                          'eventName': serializeParam(
+                                            '10K CHILD',
+                                            ParamType.String,
+                                          ),
+                                        }.withoutNulls,
+                                      );
+                                    },
+                                    text: '10K CHILD',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 90,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 0, 16, 0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 0, 0),
+                                      color: Color(0xFFEFA339),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'Inter Tight',
+                                            fontSize: 25,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                      elevation: 0,
+                                      borderSide: BorderSide(
+                                        color: Color(0xFFEFBC39),
+                                      ),
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Align(
                           alignment: AlignmentDirectional(0, -1),
                           child: Padding(
                             padding: EdgeInsets.all(6),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(
+                                  RegGravelWidget.routeName,
+                                  queryParameters: {
+                                    'eventName': serializeParam(
+                                      'Grava del Feugo',
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
                               },
                               text: 'Gravel Rides',
                               options: FFButtonOptions(
@@ -235,8 +323,16 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           child: Padding(
                             padding: EdgeInsets.all(6),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(
+                                  RegMTBikeWidget.routeName,
+                                  queryParameters: {
+                                    'eventName': serializeParam(
+                                      'Mountain Bike ',
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
                               },
                               text: 'Mountain Bike Races',
                               options: FFButtonOptions(
@@ -269,8 +365,16 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           child: Padding(
                             padding: EdgeInsets.all(6),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(
+                                  RegRunWidget.routeName,
+                                  queryParameters: {
+                                    'eventName': serializeParam(
+                                      'Wee Chi Tah Trail Run',
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
                               },
                               text: 'Trail Runs',
                               options: FFButtonOptions(
@@ -303,8 +407,16 @@ class _RegistrationPageWidgetState extends State<RegistrationPageWidget> {
                           child: Padding(
                             padding: EdgeInsets.all(6),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(
+                                  RegCritsWidget.routeName,
+                                  queryParameters: {
+                                    'eventName': serializeParam(
+                                      'Criterium',
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
                               },
                               text: 'Criterium Races',
                               options: FFButtonOptions(

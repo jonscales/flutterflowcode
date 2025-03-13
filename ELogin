@@ -9,28 +9,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'login_model.dart';
-export 'login_model.dart';
+import 'e_login_model.dart';
+export 'e_login_model.dart';
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+class ELoginWidget extends StatefulWidget {
+  const ELoginWidget({super.key});
 
-  static String routeName = 'Login';
-  static String routePath = '/login';
+  static String routeName = 'ELogin';
+  static String routePath = '/eLogin';
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<ELoginWidget> createState() => _ELoginWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
-  late LoginModel _model;
+class _ELoginWidgetState extends State<ELoginWidget> {
+  late ELoginModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LoginModel());
+    _model = createModel(context, () => ELoginModel());
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -257,6 +257,30 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   FlutterFlowTheme.of(context).primaryText,
                               validator: _model.textController2Validator
                                   .asValidator(context),
+                            ),
+                          ),
+                          FFButtonWidget(
+                            onPressed: () {
+                              print('Button pressed ...');
+                            },
+                            text: 'Login',
+                            options: FFButtonOptions(
+                              width: 150,
+                              height: 50,
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                              iconPadding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              color: Color(0xFFEF4639),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Inter Tight',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 0,
+                              borderRadius: BorderRadius.circular(24),
                             ),
                           ),
                         ]

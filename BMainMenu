@@ -10,28 +10,37 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'main_menu_model.dart';
-export 'main_menu_model.dart';
+import 'b_main_menu_model.dart';
+export 'b_main_menu_model.dart';
 
-class MainMenuWidget extends StatefulWidget {
-  const MainMenuWidget({super.key});
+class BMainMenuWidget extends StatefulWidget {
+  const BMainMenuWidget({
+    super.key,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+  });
 
-  static String routeName = 'MainMenu';
-  static String routePath = '/mainMenu';
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+
+  static String routeName = 'BMainMenu';
+  static String routePath = '/bMainMenu';
 
   @override
-  State<MainMenuWidget> createState() => _MainMenuWidgetState();
+  State<BMainMenuWidget> createState() => _BMainMenuWidgetState();
 }
 
-class _MainMenuWidgetState extends State<MainMenuWidget> {
-  late MainMenuModel _model;
+class _BMainMenuWidgetState extends State<BMainMenuWidget> {
+  late BMainMenuModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MainMenuModel());
+    _model = createModel(context, () => BMainMenuModel());
   }
 
   @override
@@ -121,7 +130,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed(InfoEventsWidget.routeName);
+                          context.pushNamed(CEventsInfoMapsWidget.routeName);
                         },
                         text: 'Info & Events',
                         options: FFButtonOptions(
@@ -146,7 +155,8 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed(RegistrationPageWidget.routeName);
+                          context
+                              .pushNamed(DRegistrationChoiceWidget.routeName);
                         },
                         text: 'On Site Registration',
                         options: FFButtonOptions(
@@ -171,7 +181,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed(LoginWidget.routeName);
+                          context.pushNamed(ELoginWidget.routeName);
                         },
                         text: 'Volunteer Login',
                         options: FFButtonOptions(
