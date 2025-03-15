@@ -15,26 +15,53 @@ import 'package:provider/provider.dart';
 
 import 'reg_endurance_model.dart';
 export 'reg_endurance_model.dart';
-
+/*
+main class to establish page 'RegEndurance'
+class contains attributes passed to it from the
+previous page (RegistrationChoice) that directs
+to the endurance registration page which has the 
+form fields to hold all the data necessary for a
+registration form.
+*/
 class RegEnduranceWidget extends StatefulWidget {
   const RegEnduranceWidget({
     super.key,
-    required this.eventName,
-    bool? ageFieldVisible,
-    required this.riderAge,
+    required this.eventName,  //passed from "Endurance Ride" button on RegistrationChoice page
+    bool? ageFieldVisible,   //state variable set by condition of toggle 
+    required this.riderAge,  // state variable created on this page
   }) : this.ageFieldVisible = ageFieldVisible ?? false;
 
   final String? eventName;
   final bool ageFieldVisible;
   final String? riderAge;
 
-  static String routeName = 'RegEndurance';
-  static String routePath = '/regEndurance';
+  static String routeName = 'RegEndurance';  //variable value passed from RegistrationChoice page
+  static String routePath = '/regEndurance'; //URL value passed from RegistrationChoice page
 
+ 
+ /*
+overidden State<RegEnduranceWidget> method createState()  
+creates the class _RegEnduranceWidgetState as a child class
+derived from the State parent class
+ */
   @override
   State<RegEnduranceWidget> createState() => _RegEnduranceWidgetState();
 }
+/*
+_RegEndruanceWidgetState holds the 'state' for this page
+The state is the condition of all variable values and is dynamic
+Any values that change are registered by the state and will cause the page
+to be rebuilt - refreshed to reflect the dynamic changes
 
+withinc _RegEnduranceWidgetState, in instance of the RegEnduranceModel class
+is instantiated as _model.  _model is a temporary object to hold the current
+state of the page.  _model is used to act upon each widget item on the page and
+store the state of that widget. _model contains one attribute called textController 
+textFieldFocusNode for each textfield on the page. These are acted upon by the methods
+TextEditingController() and FocusNode() respectively.
+
+Each time the page is viewed, this _model is created, used then destroyed (disposed)
+*/
 class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
   late RegEnduranceModel _model;
 
@@ -85,21 +112,30 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
 
     super.dispose();
   }
+/*
+the build() method generates the page based on the widgets in the parent
+class State. Each page is built as a set of nested widget objects.
 
+*/
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
+    context.watch<FFAppState>();  // listens for changes in state and rebuilds widgets when state changes
+    //GestureDetector listens for screen contact -  taps & swipes
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).unfocus();  //closes keyboard
         FocusManager.instance.primaryFocus?.unfocus();
       },
+      /*
+      the word:  preceding the : is a named parameter of the function it precedes. 
+      */
       child: WillPopScope(
         onWillPop: () async => false,
+        //Scaffold gives overall layout of page - appbar, body, textfields etc
         child: Scaffold(
-          key: scaffoldKey,
+          key: scaffoldKey, //variable to identfy this page's scaffold
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          //area at top of screen (holds back icon, page name, etc)
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
@@ -108,6 +144,7 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
               borderRadius: 30,
               borderWidth: 1,
               buttonSize: 60,
+              //This is the bicycle icon used for back navigation
               icon: FaIcon(
                 FontAwesomeIcons.bicycle,
                 color: Colors.white,
@@ -117,6 +154,7 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
                 context.pop();
               },
             ),
+            //This is the page's title
             title: Text(
               'Registration',
               style: FlutterFlowTheme.of(context).headlineLarge.override(
@@ -125,6 +163,7 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
                     letterSpacing: 0.0,
                   ),
             ),
+            //this is the backgroun image on the appbar
             actions: [],
             flexibleSpace: FlexibleSpaceBar(
               background: ClipRRect(
@@ -139,6 +178,31 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
             centerTitle: true,
             elevation: 2,
           ),
+          /*this begins the body of the page with each widget on the page nested in the code blocks 
+          denoted by indentation.  Each indented section goes with a widget layer. 
+          the widgets on this page are : 
+          SafeArea
+            Container
+              Form 
+                Column
+                  Column
+                    Container
+                      TextFormField
+                      TextFormField
+                      TextFormField
+                      TextFormField
+                      TextFormField
+                      TextFormField
+                      TextFormField
+                        Row
+                          Text
+                          Switch
+                          Text
+                        TextFormField
+                        TextFormField
+                        TextFormField
+                        Button
+          */
           body: SafeArea(
             top: true,
             child: Align(
@@ -162,6 +226,14 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
                               alignment: AlignmentDirectional(0, 0),
                               child: Container(
                                 width: 350,
+                                /* here is the first textformfield widget on the page
+                                each field has:
+                                a name (shown on the border of field)
+                                a border, with color, width & radius (makes oval ends or retangle boxes)
+                                a background color
+                                a text color
+                                a hint text that appears in the box prior to typing
+                                */
                                 child: TextFormField(
                                   controller: _model.textController1,
                                   focusNode: _model.textFieldFocusNode1,
@@ -691,6 +763,12 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
+                                /*
+                                the switch widget is used to detect age >< 18. age is entered as a string
+                                could be cast as integer and the use simple conditional directly on age int 
+                                value, but that wasn't done yet. required adding custom code and i didn't know
+                                how to get that part working.
+                                */
                                 Switch.adaptive(
                                   value: _model.switchValue!,
                                   onChanged: (newValue) async {
@@ -732,6 +810,9 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
+                                //conditional to detect switch position & allow age textformfield to be visible
+                                //if switchValue = true, the state variable "isAdult" =true which is used to 
+                                //navigate to the adult waiver version.
                                 if (_model.switchValue ?? true)
                                   Expanded(
                                     child: Align(
@@ -983,6 +1064,11 @@ class _RegEnduranceWidgetState extends State<RegEnduranceWidget> {
                           ].divide(SizedBox(height: 12)),
                         ),
                       ),
+                      /*
+                      submit button should be conditionally active based on all form fields being filled
+                      navigates to waiver page based on state variable isAdult. if isAdult=false, sets 
+                      riderAge = "Child". if isAdult=true, sets riderAge = age field text
+                      */
                       Align(
                         alignment: AlignmentDirectional(0, 0),
                         child: FFButtonWidget(
